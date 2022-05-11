@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:black; color: white;"  >
+<p>Script:</p>
+<textarea rows="10" cols="50" type="text" id="script" style="resize:none;" background="black">
+console.log('Javascript!')
+alert('Javascript!');
+</textarea>
+
+<button onclick="myFunction()">Run</button>
+
+<br><br>
+
+<p>Output:</p>
+<input id="in">
+<br><br>
+<textarea disabled id="my_console" rows="5" cols="50" style="resize:none;">
+</textarea>
+
+<script>
+
+(()=>{
+const console_log = window.console.log;
+window.console.log = function(...args){
+  console_log(...args);
+  var textarea = document.getElementById('my_console');
+  if(!textarea) return;
+  args.forEach(arg=>textarea.value += `${JSON.stringify(arg)}\n`);
+}
+})();
+
+function myFunction() {
+  var x = document.getElementById("script").value;
+  setTimeout(x,0) 
+}
+
+</script>
+
+<style>
+
+textarea {
+ width: 600px;
+ height: 100px;
+ color: white;
+ background-color:#081629;
+ font-size: .75em;
+ border: 5px, #122a4a;
+}
+
+input {
+ width: 400px;
+ height: 10;
+ color: white;
+ background-color:#0b2240;
+ background-image: linear-gradient(#081639,#0b2240);
+ font-size: .75em;
+ border: 5px, #1d3e6b;
+}
+
+</style>
+
+</body>
+</html>
